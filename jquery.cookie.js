@@ -102,6 +102,18 @@
 		return result;
 	};
 
+  $.cookie.writer = function (key, options) {
+    return function(value) {
+      return $.cookie(key, value, options);
+    }
+  }
+
+  $.cookie.reader = function (key, options) {
+    return function() {
+      return $.cookie(key, undefined, options);
+    }
+  }
+
 	config.defaults = {};
 
 	$.removeCookie = function (key, options) {
@@ -113,5 +125,11 @@
 		$.cookie(key, '', $.extend({}, options, { expires: -1 }));
 		return !$.cookie(key);
 	};
+
+  $.cookie.remover = function (key, options) {
+    return function() {
+      return $.removeCookie(key, options);
+    }
+  }
 
 }));

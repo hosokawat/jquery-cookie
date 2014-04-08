@@ -114,4 +114,17 @@
 		return !$.cookie(key);
 	};
 
+  config.io = function (key, options) {
+    if (options === undefined) options = {};
+    return {
+      'write' : function(value) {
+        return $.cookie(key, value, options);
+      } ,'read' : function() {
+        return $.cookie(key);
+      } ,'remove' : function() {
+        return $.removeCookie(key, options); 
+      }
+    }
+  }
+
 }));

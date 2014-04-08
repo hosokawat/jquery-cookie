@@ -108,9 +108,9 @@
     }
   }
 
-  $.cookie.reader = function (key, options) {
+  $.cookie.reader = function (key) {
     return function() {
-      return $.cookie(key, undefined, options);
+      return $.cookie(key);
     }
   }
 
